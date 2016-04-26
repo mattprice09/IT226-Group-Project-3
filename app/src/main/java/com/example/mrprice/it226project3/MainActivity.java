@@ -1,16 +1,28 @@
 package com.example.mrprice.it226project3;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.location.Location;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
-public class MainActivity extends BaseActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.drive.Drive;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
+public class MainActivity extends BaseActivity implements OnConnectionFailedListener, LocationListener {
+    // additional implements ---> GoogleApiClient.ConnectionCallbacks
+
+    private GoogleApiClient gClient;
+    public static Location currentLocation;
+    LocationRequest locationRequest;
+    private final int intervalMins = 30;
 
     public void setOneTime(View view) {
         //send user to one time alarm screen
@@ -18,39 +30,14 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void setRecursive(View veiw)
+    public void setLocationAlarm(View view)
     {
-
     }
 
-    public void setLocation(View view)
-    {
 
-    }
-
-    public void setTimer(View view)
-    {
+    public void setTimer(View view) {
         //send user to timer screen
         Intent intent = new Intent(this, CreateTimer.class);
-    }
-
-    // Initialize any and all UI-related elements in the CreateOneTimeAlarm activity
-    private void initializeOneTimeAlarm() {
-        // Add time zone AutoComplete options in the Time Zone field
-        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.timeZoneTxt);
-        String [] timeZones = getResources().getStringArray(R.array.time_zones_list);
-        ArrayAdapter<String> tzAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZones);
-        textView.setAdapter(tzAdapter);
-
-        // Create good-looking time picker
-        EditText timeEdit = (EditText) findViewById(R.id.enterTimeTxt);
-        timeEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TimePickerFragment frag = new TimePickerFragment();
-                frag.showTruitonTimePickerDialog(v);
-            }
-        });
     }
 
     @Override
@@ -58,6 +45,57 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initializeOneTimeAlarm();
+        // Create an instance of GoogleAPIClient.
+//        gClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Drive.API).addScope(Drive.SCOPE_FILE).build();
+        gClient = new GoogleApiClient.Builder(this).addApi(Drive.API).addScope(Drive.SCOPE_FILE).build();
+
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(intervalMins * 60000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setFastestInterval(intervalMins * 60000);
     }
+
+    /**
+     * onStart and onStop overriden in order to connect to Location Client
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        gClient.connect();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        LocationServices.FusedLocationApi.removeLocationUpdates(gClient, this);
+        gClient.disconnect();
+    }
+
+    // necessary for LocationListener interface
+    @Override
+    public void onLocationChanged(Location location) {
+        currentLocation = location;
+
+        // ########################################## RESET the location alarm here
+    }
+
+    // necessary for OnConnectionFailedListener interface
+    @Override
+    public void onConnectionFailed(ConnectionResult conRes) {}
+
+
+
+
+
+//    @Override
+//    public void onConnected(Bundle bundle) {
+//        // Display the connection status
+//
+//        if(servicesConnected()) {
+//            LocationServices.FusedLocationApi.requestLocationUpdates(gClient, locationRequest, this);
+//        }
+//    }
+//
+//    @Override
+//    public void onConnectionSuspended(int i) {}
 }

@@ -77,9 +77,30 @@ public class CreateOneTimeAlarm extends BaseActivity {
         this.CreateAlarm(data, DLM);
     }
 
+    // Initialize any and all UI-related elements in the CreateOneTimeAlarm activity
+    private void initialize() {
+        // Add time zone AutoComplete options in the Time Zone field
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.timeZoneTxt);
+        String [] timeZones = getResources().getStringArray(R.array.time_zones_list);
+        ArrayAdapter<String> tzAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZones);
+        textView.setAdapter(tzAdapter);
+
+        // Create good-looking time picker
+        EditText timeEdit = (EditText) findViewById(R.id.enterTimeTxt);
+        timeEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerFragment frag = new TimePickerFragment();
+                frag.showTruitonTimePickerDialog(v);
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_one_time_alarm);
+
+        initialize();
     }
 }
