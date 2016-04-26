@@ -7,51 +7,129 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:orientation="vertical"
+        android:orientation="vertical"
         tools:context="com.example.mrprice.it226project3.MainActivity"
         android:baselineAligned="false"
         android:clickable="true"
         android:contextClickable="true">
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enter_alarm"
             android:layout_gravity="center" />
 
+        <!-- Enter Message -->
         <EditText android:id="@+id/edit_message"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_message" />
+            android:hint="@string/edit_message"
+            android:textStyle="italic" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_alarm_time"
-            android:layout_gravity="center" />
-
-        <TimePicker
-            android:id="@+id/timePickerOneTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
+        <!-- "Enter date" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_alarm_date"
             android:layout_gravity="center" />
 
+        <!-- Date picker -->
         <CalendarView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/calendarViewOneTime" />
 
+        <!-- Time picker -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <!-- "Enter Time" edit text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/enterTimeTxt"
+                android:hint="@string/edit_alarm_time"
+                android:textStyle="italic" />
+
+            <!-- Time Zone edit text (autocomplete) -->
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Time Zone"
+                android:textStyle="italic"
+                android:id="@+id/timeZoneTxt"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <!-- " *Leave blank if local" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*Leave blank if local"
+            android:textStyle="italic"
+            android:layout_gravity="right" />
+
+        <!--"Is this recurring?" textview -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is this recurring?"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/textView2" />
+
+        <!-- Container for "Yes" and "No" radio buttons -->
+        <RadioGroup
+            android:id="@+id/recurOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                    <!-- "Yes" button -->
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"
+                        android:id="@+id/recurYes"
+                        android:layout_marginLeft="120dp"
+                        android:layout_marginStart="120dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <!-- "No" button -->
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:id="@+id/recurNo"
+                        android:layout_marginLeft="39dp"
+                        android:layout_marginStart="39dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/recurYes"
+                        android:layout_toEndOf="@+id/recurYes" />
+
+            </RelativeLayout>
+        </RadioGroup>
+
+        <!-- "Next" button to submit alarm info -->
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_select_time_zone"
-            android:onClick="setTimeZone" />
+            android:text="Create Alarm"
+            android:onClick="buttonSubmit" />
 
     </LinearLayout>
 </ScrollView>

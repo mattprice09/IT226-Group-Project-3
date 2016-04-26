@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    public final static String EXTRA_MESSAGE = "com.example.mrprice.it226project3.MESSAGE";
-
-
-    public void setOneTime(View view)
-    {
+    public void setOneTime(View view) {
         //send user to one time alarm screen
         Intent intent = new Intent(this, CreateOneTimeAlarm.class);
+        startActivity(intent);
     }
 
     public void setRecursive(View veiw)
@@ -35,35 +34,30 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateTimer.class);
     }
 
-    //example method, is not set up to set alarm
-//    public void example(View view)
-//    {
-//        //intent is an object that can be used to start another activity.
-//        //the keyword "this" is a reference to MainActivity
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//
-//        //Creating a text field by finding edit_message text through
-//        //main resource folder R (technically R.java file). Searching R by the text id which is
-//        //edit_message. Remember: edit_message was created in activity_main.xml
-//        EditText editText = (EditText) findViewById(R.id.edit_message);
-//
-//        //The previous line took the text entered in the field and stored it
-//        //in an EditText object.
-//        //storing the text from the text field and storing
-//        //it inside a string called message.
-//        String message = editText.getText().toString();
-//
-//        //we are storing information to be passed to DisplayMessageActivity
-//        //i think that message is being put into EXTRA_MESSAGE.
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//
-//        startActivity(intent);
-//    }
+    // Initialize any and all UI-related elements in the CreateOneTimeAlarm activity
+    private void initializeOneTimeAlarm() {
+        // Add time zone AutoComplete options in the Time Zone field
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.timeZoneTxt);
+        String [] timeZones = getResources().getStringArray(R.array.time_zones_list);
+        ArrayAdapter<String> tzAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZones);
+        textView.setAdapter(tzAdapter);
 
+        // Create good-looking time picker
+        EditText timeEdit = (EditText) findViewById(R.id.enterTimeTxt);
+        timeEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerFragment frag = new TimePickerFragment();
+                frag.showTruitonTimePickerDialog(v);
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initializeOneTimeAlarm();
     }
 }

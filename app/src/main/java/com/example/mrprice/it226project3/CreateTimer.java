@@ -8,11 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class CreateTimer extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CreateTimer extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     private String[] selection = new String [99];
     private String hours;
     private String minutes;
+
     private ArrayAdapter<String> hourAdapter = new ArrayAdapter<String>(this,
             android.R.layout.simple_spinner_dropdown_item,selection);
 
@@ -22,9 +23,9 @@ public class CreateTimer extends AppCompatActivity implements AdapterView.OnItem
     public void createTimer(View view)
     {
         //Remember to send to a class tha builds the alarm
-        Intent intent = new Intent(this, .class);
-        String timer = hours + ":" + minutes + ":" + "00";
-        intent.putExtra("timer", timer);
+//        Intent intent = new Intent(this, this.class);
+//        String timer = hours + ":" + minutes + ":" + "00";
+//        intent.putExtra("timer", timer);
     }
 
     public void onNothingSelected(AdapterView parent){}
@@ -54,6 +55,11 @@ public class CreateTimer extends AppCompatActivity implements AdapterView.OnItem
 //                android.R.layout.simple_spinner_dropdown_item,selection);
         minuteSpinner.setAdapter(minuteAdapter);
         minuteSpinner.setOnItemSelectedListener(this);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }
