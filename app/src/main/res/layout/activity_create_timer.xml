@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mrprice.it226project3.SetTimeZone">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_hour"
+        android:layout_gravity="center" />
+
+    <Spinner
+        android:id="@+id/hourSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_minute"
+        android:layout_gravity="center"/>
+
+    <Spinner
+        android:id="@+id/minuteSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Spinner>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_create_timer"
+        android:onClick="createTimer"
+        android:layout_gravity="center"/>
+</LinearLayout>

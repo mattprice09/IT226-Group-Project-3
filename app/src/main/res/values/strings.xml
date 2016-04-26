@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Alarm App</string>
+    <string name="warning">This app uses your GPS location</string>
+
+    <string name="button_select_time_zone">Next: Select time Zone</string>
+    <string name="button_create_one_time">Create Alarm</string>
+    <string name="button_create_recursive">Create Recursive Alarm</string>
+    <string name="button_create_location">Create Location Alarm</string>
+    <string name="button_create_timer">Create Timer</string>
+    <string name="button_use_current_zone">Use Current Timezone</string>
+    <string name="button_use_custom_zone">Use Custom Timezone</string>
+
+
+    <string name="edit_message">Enter a message</string>
+    <string name="edit_alarm_date">Enter Date</string>
+    <string name="edit_alarm_time">Enter Time</string>
+    <string name="enter_alarm">Enter One Time Alarm</string>
+    <string name="enter_time_zone">Enter Custom Time Zone</string>
+
+
+    <string name="time_zone_select">Timezone Selection</string>
+    <string name="timer_creation">Timer</string>
+
+    <string name="pick_hour">Pick Hour(s)</string>
+    <string name="pick_minute">Pick Minute(s)</string>
+
+    <string name="or">Or</string>
+
+
+</resources>
