@@ -68,6 +68,7 @@
                 android:textStyle="italic"
                 android:id="@+id/timeZoneTxt"
                 android:layout_gravity="right" />
+
         </LinearLayout>
 
         <!-- " *Leave blank if local" -->
@@ -86,42 +87,51 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/textView2" />
 
-        <!-- Container for "Yes" and "No" radio buttons -->
+        <!-- RadioGroup for "Yes" and "No" radio buttons -->
         <RadioGroup
             android:id="@+id/recurOptions"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal" >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <!-- space filler -->
+            <View
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal">
+                android:layout_weight="1" />
 
-                    <!-- "Yes" button -->
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Yes"
-                        android:id="@+id/recurYes"
-                        android:layout_marginLeft="120dp"
-                        android:layout_marginStart="120dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+            <!-- "Yes" button -->
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Yes"
+                android:id="@+id/recurYes"
+                android:layout_weight="1"
+                android:gravity="center" />
 
-                    <!-- "No" button -->
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="No"
-                        android:id="@+id/recurNo"
-                        android:layout_marginLeft="39dp"
-                        android:layout_marginStart="39dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/recurYes"
-                        android:layout_toEndOf="@+id/recurYes" />
+            <!-- space filler -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-            </RelativeLayout>
+            <!-- "No" button -->
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="No"
+                android:id="@+id/recurNo"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:checked="true" />
+
+            <!-- space filler -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
         </RadioGroup>
 
         <!-- "Next" button to submit alarm info -->

@@ -9,15 +9,19 @@
     <string name="button_create_timer">Create Timer</string>
     <string name="button_use_current_zone">Use Current Timezone</string>
     <string name="button_use_custom_zone">Use Custom Timezone</string>
+    <string name="button_use_minutes">Set Alarm with Input</string>
+    <string name="button_use_default">Set Default Alarm</string>
 
     <string name="edit_message">Enter an optional message</string>
     <string name="edit_alarm_date">Enter Date</string>
-    <string name="edit_alarm_time">Enter Time</string>
+    <string name="edit_alarm_time">Enter Time (HH:MM)</string>
     <string name="enter_alarm">Create New Alarm</string>
     <string name="enter_time_zone">Enter Custom Time Zone</string>
 
     <string name="time_zone_select">Timezone Selection</string>
     <string name="timer_creation">Timer</string>
+
+    <string name="location_alarm">Start Location Alarm</string>
 
     <string name="pick_hour">Pick Hour(s)</string>
     <string name="pick_minute">Pick Minute(s)</string>
@@ -33,6 +37,7 @@
         <item>Alaskan</item>
         <item>Hawaiian</item>
     </string-array>
+    <string name="title_activity_create_location_alarm">CreateLocationAlarm</string>
 
 
 </resources>

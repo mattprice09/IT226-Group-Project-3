@@ -14,6 +14,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, 	Intent intent) {
+
         showNotification(context, intent);
     }
 
@@ -25,17 +26,18 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Get data from alarm
         String msg = intent.getStringExtra("msg");
         String location = intent.getStringExtra("location");
-        String content = msg + "\nYou were here when you set this alarm: " + location;
+        String content = msg + "\nYou were here when you set this alarm: \n" + location;
 
         // Create notification
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.mipmap.ic_launcher).setContentTitle(msg).setContentText(content);
-        // bring user back to Alarm App if they click OK
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.mipmap.ic_launcher).setContentTitle(msg).setContentText(content).setTicker(msg);
+        // bring user back to Alarm App if they click OK?
         Intent newIntent = new Intent(context, MainActivity.class);
-        PendingIntent pending = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+        PendingIntent pending = PendingIntent.getActivity(context, 0, newIntent, 0);
         mBuilder.setContentIntent(pending);
 
         mBuilder.setDefaults(Notification.DEFAULT_SOUND);
         mBuilder.setAutoCancel(true);
+
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
     }

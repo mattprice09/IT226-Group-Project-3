@@ -1,40 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="archive.SetTimeZone">
-
+    android:layout_height="match_parent" >
 
     <TextView
+        android:id="@+id/textView"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pick_hour"
-        android:layout_gravity="center" />
-
-    <Spinner
-        android:id="@+id/hourSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Spinner>
+        android:text="Timer Alarm"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:id="@+id/textView2"
+        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pick_minute"
-        android:layout_gravity="center"/>
+        android:layout_marginTop="26dp"
+        android:text="Days : "
+        android:layout_below="@+id/numberPicker2"
+        android:layout_alignRight="@+id/numberPicker2"
+        android:layout_alignEnd="@+id/numberPicker2" />
 
-    <Spinner
-        android:id="@+id/minuteSpinner"
+    <NumberPicker
+        android:id="@+id/numberPicker2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </Spinner>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginTop="46dp" />
 
-    <Button
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker3"
+        android:layout_above="@+id/textView2"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minutes : "
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignLeft="@+id/numberPicker3"
+        android:layout_alignStart="@+id/numberPicker3" />
+
+    <EditText
+        android:id="@+id/enterTxt"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/edit_message"
+        android:textStyle="italic"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonTimer"
         android:text="@string/button_create_timer"
         android:onClick="createTimer"
-        android:layout_gravity="center"/>
-</LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enterTxt"/>
+
+</RelativeLayout>

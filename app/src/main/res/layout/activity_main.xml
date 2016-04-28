@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_create_location"
-        android:onClick="setLocation"
+        android:onClick="setLocationAlarm"
         android:layout_gravity="center"/>
 
 </LinearLayout>

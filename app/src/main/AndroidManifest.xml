@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mrprice.it226project3">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,6 +11,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Activities -->
         <activity
             android:name=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -31,11 +34,14 @@
         <activity
             android:name=".CreateTimer"
             android:parentActivityName=".BaseActivity" />
+        <activity android:name=".CreateLocationAlarm"></activity>
+        <!-- END activities -->
 
         <receiver
             android:name=".AlarmReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
     </application>
 
 </manifest>
